@@ -1,0 +1,3 @@
+#ignored files and directories
+.idea/
+WebCalculator.iml
