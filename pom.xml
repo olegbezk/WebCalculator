@@ -16,7 +16,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/</url>
+                    <url>jdbc:mysql://localhost:3306/calculator_data</url>
                     <user>root</user>
                     <password>12345</password>
                 </configuration>
@@ -28,11 +28,15 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 
     <properties>
-        <hibernate.version>5.2.0.Final</hibernate.version>
+
     </properties>
 
     <dependencies>

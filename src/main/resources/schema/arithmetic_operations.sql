@@ -1,3 +1,4 @@
+DROP DATABASE calculator_data;
 CREATE DATABASE IF NOT EXISTS calculator_data;
 
 CREATE TABLE arithmetic_ops (
