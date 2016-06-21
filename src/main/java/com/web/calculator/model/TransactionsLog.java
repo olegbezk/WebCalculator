@@ -1,7 +1,6 @@
 package com.web.calculator.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by oleg.bezkorovaynyi on 17 Jun 2016.
@@ -19,8 +18,8 @@ public class TransactionsLog {
     @Column(name = "leftOperand")
     private double leftOperand;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<ArithmeticOperations> operator;
+    @Enumerated(EnumType.ORDINAL)
+    public ArithmeticOperation arithmeticOperation;
 
     @Column(name = "rightOperand")
     private double rightOperand;
@@ -44,14 +43,6 @@ public class TransactionsLog {
         this.leftOperand = leftOperand;
     }
 
-    public List<ArithmeticOperations> getOperator() {
-        return operator;
-    }
-
-    public void setOperator(List<ArithmeticOperations> operator) {
-        this.operator = operator;
-    }
-
     public double getRightOperand() {
         return rightOperand;
     }
@@ -68,12 +59,20 @@ public class TransactionsLog {
         this.result = result;
     }
 
+    public ArithmeticOperation getArithmeticOperation() {
+        return arithmeticOperation;
+    }
+
+    public void setArithmeticOperation(ArithmeticOperation arithmeticOperation) {
+        this.arithmeticOperation = arithmeticOperation;
+    }
+
     @Override
     public String toString() {
         return "TransactionsLog{" +
                 "transactionId=" + transactionId +
                 ", leftOperand=" + leftOperand +
-                ", operator=" + operator +
+                ", arithmeticOperation=" + arithmeticOperation +
                 ", rightOperand=" + rightOperand +
                 ", result=" + result +
                 '}';
