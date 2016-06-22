@@ -12,7 +12,7 @@ public class TransactionsLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "transactionId")
+    @Column(name = "id")
     private int transactionId;
 
     @Column(name = "leftOperand")

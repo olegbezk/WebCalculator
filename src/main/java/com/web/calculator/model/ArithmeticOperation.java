@@ -6,16 +6,5 @@ package com.web.calculator.model;
 
 public enum ArithmeticOperation {
 
-    ADD(1), SUBTRACT(2), MULTIPLE(3), DIVIDE(4), POWER(5);
-
-    private int number;
-
-    ArithmeticOperation(int number) {
-        this.number = number;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
+    ADD, SUBTRACT, MULTIPLE, DIVIDE, POWER;
 }
