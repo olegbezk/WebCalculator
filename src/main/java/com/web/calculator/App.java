@@ -20,8 +20,9 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguratio
 @EnableAutoConfiguration
 public class App {
     public static void main(String[] args) {
-//        Flyway flyway = new Flyway();
-//        flyway.migrate();
+        Flyway flyway = new Flyway();
+        flyway.setDataSource("jdbc:mysql://localhost:3306/calculator_data", "root", "12345", null);
+        flyway.migrate();
         SpringApplication.run(App.class, args);
     }
 }
