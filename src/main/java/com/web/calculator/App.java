@@ -20,8 +20,8 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguratio
 @EnableAutoConfiguration
 public class App {
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
 //        Flyway flyway = new Flyway();
 //        flyway.migrate();
+        SpringApplication.run(App.class, args);
     }
 }

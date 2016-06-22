@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 @RepositoryRestResource
-public interface TransactionsRepository extends CrudRepository<TransactionsLog, Integer> {
+public interface OperationsRepository extends CrudRepository<TransactionsLog, Integer> {
     List<TransactionsLog> getFirstOperand(@Param("leftOperand") double firstOperand);
     List<TransactionsLog> getSecondOperand(@Param("rightOperand") double secondOperand);
     List<TransactionsLog> getResult(@Param("result") double result);
