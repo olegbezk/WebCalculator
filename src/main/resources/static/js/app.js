@@ -1,7 +1,11 @@
 var calculatorApp = angular.module('calculatorApp', ['calculatorModule']);
 var calculatorModule = angular.module('calculatorModule', []);
 
-calculatorModule.controller('calculatorController', ['$scope', function ($scope) {
+calculatorModule.controller('calculatorController', function($scope, $http) {
+$http.get('http://localhost:8080/transaction-log/logs/')
+       .then(function(res){
+          $scope.results = res.data;
+        });
     $scope.calculator = calculatorModel;
     $scope.numberButtonClicked = function(clickedNumber) {
         if(calculatorModel.currentNumber === "0") {
@@ -25,7 +29,7 @@ calculatorModule.controller('calculatorController', ['$scope', function ($scope)
     $scope.resetClicked = function() {
          calculatorModel.reset();
     };
-}]);
+});
 
 		calculatorModel = {
 			result: 0, // Holds the actual result in memory

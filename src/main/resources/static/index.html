@@ -3,7 +3,7 @@
 <head>
     <title>Web Calculator</title>
     <style>
-    .section{clear:both;padding:0;margin:0}.col{background-color:#f4f4f4;height:20px;text-align:center;display:block;float:left;margin:1% 0 1% 1.6%}.col:first-child{margin-left:0}.col:hover{background-color:#f0f0ff}.group:before,.group:after{content:"";display:table}.group:after{clear:both}.c3of4{width:74.6%}.c1of4{width:23.8%}.c1of3{width:32.26%}.c2of3{width:32.26%}.c3of3{width:32.26%}
+    .section{clear:both;padding:0;margin:0}.col{background-color:#f4f4f4;height:20px;text-align:center;display:block;float:left;margin:1% 0 1% 1.6%}.col:first-child,.section>ul:nth-child(4n+4){margin-left:0}.col:hover{background-color:#f0f0ff}.group:before,.group:after{content:"";display:table}.group:after{clear:both}.c3of4{width:74.6%}.c1of4{width:23.8%}.c1of3{width:32.25%}.c2of3{width:32.25%}.c3of3{width:32.25%}.col{box-sizing:border-box}
     </style>
 </head>
 <body>
@@ -44,14 +44,36 @@
         <font size="4">History</font>
     </p>
     <div class="section group">
-        <label class="col c1of3">First Operand</label>
-        <label class="col c2of3">Second Operand</label>
-        <label class="col c3of3">Result</label>
-    </div>
-    <div class="section group"> <!-- Display the operands and results row -->
-        <div class="col c1of3"></div>
-        <div class="col c2of3"></div>
-        <div class="col c3of3"></div>
+        <table border="1" style="width:100%">
+            <tr>
+                <td style="width: 25%"><p style="text-align:center;">First Operand</p></td>
+                <td style="width: 25%"><p style="text-align:center;">Operation</p></td>
+                <td style="width: 25%"><p style="text-align:center;">Second Operand</p></td>
+                <td style="width: 25%"><p style="text-align:center;">Result</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <ul style="text-align:center;" ng-repeat="res in results">
+                    {{res.leftOperand}}
+                    </ul>
+                </td>
+                <td>
+                    <ul style="text-align:center;" ng-repeat="res in results">
+                        {{res.arithmeticOperation}}
+                    </ul>
+                </td>
+                <td>
+                    <ul style="text-align:center;" ng-repeat="res in results">
+                        {{res.rightOperand}}
+                    </ul>
+                </td>
+                <td>
+                    <ul style="text-align:center;" ng-repeat="res in results">
+                        {{res.result}}
+                    </ul>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 

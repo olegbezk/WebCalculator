@@ -6,5 +6,5 @@ package com.web.calculator.model;
 
 public enum ArithmeticOperation {
 
-    ADD, SUBTRACT, MULTIPLE, DIVIDE, POWER
+    ADD, SUBTRACT, MULTIPLY, DIVIDE, POWER
 }

@@ -21,7 +21,7 @@ public class Calculator {
             case SUBTRACT:
                 result = log.getLeftOperand() - log.getRightOperand();
                 break;
-            case MULTIPLE:
+            case MULTIPLY:
                 result = log.getLeftOperand() * log.getRightOperand();
                 break;
             case DIVIDE:
