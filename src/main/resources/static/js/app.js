@@ -56,6 +56,26 @@ $http.get('http://localhost:8080/transaction-log/logs/')
 				this.currentNumber = "";
 			},
 
+			substituteSign: function(operationSign) {
+			    switch(operationSign) {
+			    case ADD:
+			        this.operation = "+";
+			        break;
+			    case DIVIDE:
+                    this.operation = "/";
+                     break;
+                case MULTIPLY:
+                     this.operation = "*";
+                     break;
+                case SUBTRACT:
+                     this.operation = "-";
+                     break;
+                case POWER:
+                     this.operation = "^";
+                     break;
+			    }
+			},
+
 			calculate: function() {
 
 				switch(this.operation) {

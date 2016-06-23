@@ -3,7 +3,6 @@ package com.web.calculator.service;
 
 import com.web.calculator.model.TransactionsLog;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.UnexpectedRollbackException;
 
 /**
  * Created by oleg.bezkorovaynyi on 22 Jun 2016.
@@ -28,14 +27,14 @@ public class Calculator {
                 if (log.getRightOperand() != 0.0) {
                     result = log.getLeftOperand() / log.getRightOperand();
                 } else {
-                    throw new UnexpectedRollbackException("Division by zero");
+                    throw new ArithmeticException("Division by zero");
                 }
                 break;
             case POWER:
                 result = Math.pow(log.getLeftOperand(), log.getRightOperand());
                 break;
             default:
-                throw new UnexpectedRollbackException("Unsupported arithmetic operation");
+                throw new ArithmeticException("Unsupported arithmetic operation");
         }
         log.setResult(result);
         return log;
