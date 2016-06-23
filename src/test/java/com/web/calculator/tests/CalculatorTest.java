@@ -26,13 +26,13 @@ public class CalculatorTest {
         calculator = new Calculator();
         expectedResults = new HashMap<>();
         transactionsLog = new TransactionsLog();
+        transactionsLog.setLeftOperand(4.0);
+        transactionsLog.setRightOperand(4.0);
         expectedResults.put(ArithmeticOperation.ADD, 8.0);
         expectedResults.put(ArithmeticOperation.SUBTRACT, 0.0);
         expectedResults.put(ArithmeticOperation.MULTIPLY, 16.0);
         expectedResults.put(ArithmeticOperation.DIVIDE, 1.0);
         expectedResults.put(ArithmeticOperation.POWER, 256.0);
-        transactionsLog.setLeftOperand(4.0);
-        transactionsLog.setRightOperand(4.0);
     }
 
     @Test
