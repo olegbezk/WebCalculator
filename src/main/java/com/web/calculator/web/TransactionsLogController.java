@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.web.calculator.model.TransactionsLog;
 import com.web.calculator.dao.TransactionLogDao;
-import com.web.calculator.service.Calculator;
+import com.web.calculator.service.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ public class TransactionsLogController {
     private TransactionLogDao transactionLogDao;
 
     @Autowired
-    private Calculator calculator;
+    private CalculatorService calculatorService;
 
     @Transactional
     @RequestMapping(value = "/logs", method = RequestMethod.GET)
@@ -33,7 +33,7 @@ public class TransactionsLogController {
     @Transactional
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public TransactionsLog addTransactionLog(@RequestBody TransactionsLog transactionLog) {
-        calculator.calculate(transactionLog);
+        calculatorService.calculate(transactionLog);
         return transactionLogDao.save(transactionLog);
     }
 }

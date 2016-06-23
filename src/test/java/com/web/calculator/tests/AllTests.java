@@ -9,6 +9,6 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({CalculatorTest.class})
+@SuiteClasses({CalculatorServiceTest.class})
 public class AllTests {
 }

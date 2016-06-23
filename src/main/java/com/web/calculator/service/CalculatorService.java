@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class Calculator {
+public class CalculatorService {
 
     public TransactionsLog calculate(TransactionsLog log) {
         double result;
