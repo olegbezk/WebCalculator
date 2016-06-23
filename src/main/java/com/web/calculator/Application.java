@@ -1,6 +1,5 @@
 package com.web.calculator;
 
-//import org.flywaydb.core.Flyway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -44,8 +43,6 @@ public class Application {
         Properties jpaProperties = new Properties();
         jpaProperties.put("hibernate.hbm2ddl.auto", "create-drop");
         jpaProperties.put("hibernate.show-sql", true);
-//        jpaProperties.setProperty("hibernate.hbm2ddl.import_files_sql_extractor",
-//                "org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor");
 
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setJpaVendorAdapter(adapter);
@@ -66,12 +63,6 @@ public class Application {
     }
 
     public static void main(String[] args) {
-//        Flyway flyway = new Flyway();
-//        flyway.clean();
-//        flyway.setDataSource("jdbc:h2:file:./target/foobar.mv.db", "sa", null);
-//        //flyway.baseline();
-//        flyway.setBaselineOnMigrate(true);
-//        flyway.migrate();
         SpringApplication.run(Application.class, args);
     }
 }

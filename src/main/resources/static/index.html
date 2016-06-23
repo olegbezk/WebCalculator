@@ -1,9 +1,62 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="calculatorApp">
 <head>
-    <meta charset="UTF-8">
-    <title>Spring Boot Web App</title>
+    <title>Web Calculator</title>
+    <style>
+    .section{clear:both;padding:0;margin:0}.col{background-color:#f4f4f4;height:20px;text-align:center;display:block;float:left;margin:1% 0 1% 1.6%}.col:first-child{margin-left:0}.col:hover{background-color:#f0f0ff}.group:before,.group:after{content:"";display:table}.group:after{clear:both}.c3of4{width:74.6%}.c1of4{width:23.8%}.c1of3{width:32.26%}.c2of3{width:32.26%}.c3of3{width:32.26%}
+    </style>
 </head>
 <body>
-<p>Hello from Spring Boot</p>
+<!-- Declare the View -->
+<div ng-controller="calculatorController">
+    <p style="text-align:center;">
+        <font size="5">Calculator</font>
+    </p>
+    <div class="section group"> <!-- Display the result row -->
+        <div class="col c3of4">{{ calculator.currentDisplay }}</div>
+        <div ng-click="resetClicked()" class="col c1of4">C</div>
+    </div>
+    <div class="section group"> <!-- Display the 1st number row -->
+        <div ng-click="numberButtonClicked(1)" class="col c1of4">1</div>
+        <div ng-click="numberButtonClicked(2)" class="col c1of4">2</div>
+        <div ng-click="numberButtonClicked(3)" class="col c1of4">3</div>
+        <div ng-click="operationButtonClicked('+')" class="col c1of4">+</div>
+    </div>
+    <div class="section group"> <!-- Display the 2nd number row -->
+        <div ng-click="numberButtonClicked(4)" class="col c1of4">4</div>
+        <div ng-click="numberButtonClicked(5)" class="col c1of4">5</div>
+        <div ng-click="numberButtonClicked(6)" class="col c1of4">6</div>
+        <div ng-click="operationButtonClicked('-')" class="col c1of4">-</div>
+    </div>
+    <div class="section group"> <!-- Display the 3rd number row -->
+        <div ng-click="numberButtonClicked(7)" class="col c1of4">7</div>
+        <div ng-click="numberButtonClicked(8)" class="col c1of4">8</div>
+        <div ng-click="numberButtonClicked(9)" class="col c1of4">9</div>
+        <div ng-click="operationButtonClicked('^')" class="col c1of4">^</div>
+    </div>
+    <div class="section group"> <!-- Display the 4rd number row -->
+        <div ng-click="operationButtonClicked('*')" class="col c1of4">*</div>
+        <div ng-click="operationButtonClicked('/')" class="col c1of4">/</div>
+        <div ng-click="operationButtonClicked('.')" class="col c1of4">.</div>
+        <div ng-click="enterClicked()" class="col c1of4">=</div>
+    </div>
+    <p style="text-align:center;">
+        <font size="4">History</font>
+    </p>
+    <div class="section group">
+        <label class="col c1of3">First Operand</label>
+        <label class="col c2of3">Second Operand</label>
+        <label class="col c3of3">Result</label>
+    </div>
+    <div class="section group"> <!-- Display the operands and results row -->
+        <div class="col c1of3"></div>
+        <div class="col c2of3"></div>
+        <div class="col c3of3"></div>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="js/app.js"></script>
+
 </body>
 </html>

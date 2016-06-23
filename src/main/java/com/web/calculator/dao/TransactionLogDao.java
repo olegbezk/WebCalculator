@@ -11,7 +11,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransactionLogDao extends JpaRepository<TransactionsLog, Integer> {
-//    List<TransactionsLog> getFirstOperand(@Param("leftOperand") double firstOperand);
-//    List<TransactionsLog> getSecondOperand(@Param("rightOperand") double secondOperand);
-//    List<TransactionsLog> getResult(@Param("result") double result);
 }

@@ -20,14 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/transaction-log")
 public class TransactionsLogController {
+
     @Autowired
     private TransactionLogDao transactionLogDao;
 
     @Autowired
     private Calculator calculator;
 
-    @RequestMapping(value = "/logs", method = RequestMethod.GET)
     @Transactional
+    @RequestMapping(value = "/logs", method = RequestMethod.GET)
     public List<TransactionsLog> getTransactionLogs() {
         return transactionLogDao.findAll();
     }
@@ -35,6 +36,7 @@ public class TransactionsLogController {
     @Transactional
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public TransactionsLog addTransactionLog(@RequestBody TransactionsLog transactionLog) {
+        calculator.calculate(transactionLog);
         return transactionLogDao.save(transactionLog);
     }
 }
