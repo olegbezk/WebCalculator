@@ -3,7 +3,7 @@ var calculatorModule = angular.module('calculatorModule', []);
 
 calculatorModule.controller('calculatorController', function($scope, $http) {
 
-    var singleOp;
+    var singleOp = false;
 
     function showHistory() {
         $http.get('http://localhost:8080/transaction-log/logs/')
@@ -31,7 +31,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
             }
         ).success(function (response) {
             $scope.calcResult = response;
-            calculatorModel.currentDisplay = response.data;
+            calculatorModel.currentDisplay = response.result;
         });
     }
 
@@ -69,7 +69,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
             calculatorModel.firstNumber = parseFloat(clickedNumber);
         } else {
             calculatorModel.secondNumber = parseFloat(clickedNumber);
-            singleOp = 0;
+            singleOp = true;
         }
         calculatorModel.currentDisplay += clickedNumber;
     };
@@ -79,13 +79,10 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     };
 
     $scope.enterClicked = function() {
-        if(singleOp == 0) {
+        if(singleOp == true) {
             postData();
-            calculatorModel.calculate();
-            calculatorModel.currentDisplay = calculatorModel.result;
             showHistory();
-            //calculatorModel.reset();
-            singleOp++;
+            singleOp = false;
         }
     };
 
@@ -122,27 +119,6 @@ calculatorModel = {
         //this.calculate();
 
         this.currentNumber = "";
-    },
-
-    calculate: function() {
-
-        switch(this.operation) {
-            case "+":
-                this.result = this.result + parseFloat(this.currentNumber);
-                break;
-
-            case "-":
-                this.result = this.result - parseFloat(this.currentNumber);
-                break;
-
-            case "*":
-                this.result = this.result * parseFloat(this.currentNumber);
-                break;
-
-            case "/":
-                this.result = this.result / parseFloat(this.currentNumber);
-                break;
-        }
     }
 
 };
