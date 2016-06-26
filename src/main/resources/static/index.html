@@ -5,34 +5,33 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<!-- Declare the View -->
 <div ng-controller="calculatorController">
     <p style="text-align:center;">
         <font size="5">Calculator</font>
     </p>
-    <div class="section group"> <!-- Display the result row -->
+    <div class="section group">
         <div class="col c3of4">{{ calculator.currentDisplay }}</div>
         <div ng-click="resetClicked()" class="col c1of4">C</div>
     </div>
-    <div class="section group"> <!-- Display the 1st number row -->
+    <div class="section group">
         <div ng-click="numberButtonClicked(1)" class="col c1of4">1</div>
         <div ng-click="numberButtonClicked(2)" class="col c1of4">2</div>
         <div ng-click="numberButtonClicked(3)" class="col c1of4">3</div>
         <div ng-click="operationButtonClicked('+')" class="col c1of4">+</div>
     </div>
-    <div class="section group"> <!-- Display the 2nd number row -->
+    <div class="section group">
         <div ng-click="numberButtonClicked(4)" class="col c1of4">4</div>
         <div ng-click="numberButtonClicked(5)" class="col c1of4">5</div>
         <div ng-click="numberButtonClicked(6)" class="col c1of4">6</div>
         <div ng-click="operationButtonClicked('-')" class="col c1of4">-</div>
     </div>
-    <div class="section group"> <!-- Display the 3rd number row -->
+    <div class="section group">
         <div ng-click="numberButtonClicked(7)" class="col c1of4">7</div>
         <div ng-click="numberButtonClicked(8)" class="col c1of4">8</div>
         <div ng-click="numberButtonClicked(9)" class="col c1of4">9</div>
         <div ng-click="operationButtonClicked('^')" class="col c1of4">^</div>
     </div>
-    <div class="section group"> <!-- Display the 4rd number row -->
+    <div class="section group">
         <div ng-click="operationButtonClicked('*')" class="col c1of4">*</div>
         <div ng-click="operationButtonClicked('/')" class="col c1of4">/</div>
         <div ng-click="operationButtonClicked('.')" class="col c1of4">.</div>

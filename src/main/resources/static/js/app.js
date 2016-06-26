@@ -8,13 +8,13 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     function showHistory() {
         $http.get('http://localhost:8080/transaction-log/logs/')
             .then(function(res){
-            $scope.results = res.data;
+                $scope.results = res.data;
             });
     }
 
     function postData() {
 
-        substituteOperation();
+        substituteOperationSign();
 
         var calcData = {
             leftOperand: calculatorModel.firstNumber,
@@ -29,12 +29,13 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
                     'Content-Type': 'application/json'
                 }
             }
-        ).success(function (data) {
-            $scope.calcResult = data;
+        ).success(function (response) {
+            $scope.calcResult = response;
+            calculatorModel.currentDisplay = response.data;
         });
     }
 
-    function substituteOperation() {
+    function substituteOperationSign() {
         switch(calculatorModel.operation) {
             case "+":
                 calculatorModel.subOperation = "ADD";
@@ -83,6 +84,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
             calculatorModel.calculate();
             calculatorModel.currentDisplay = calculatorModel.result;
             showHistory();
+            //calculatorModel.reset();
             singleOp++;
         }
     };
