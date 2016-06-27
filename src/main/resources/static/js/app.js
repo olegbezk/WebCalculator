@@ -109,7 +109,6 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
 
     $scope.resetClicked = function() {
         calculatorModel.reset();
-        calculatorModel.continueOperation = false;
         showHistory();
     };
 });
@@ -132,6 +131,7 @@ calculatorModel = {
         this.currentDisplay = "" ;
         this.firstNumber = 0;
         this.secondNumber = 0;
+        this.continueOperation = false;
     },
 
     setOperation: function(operationToSet) {
