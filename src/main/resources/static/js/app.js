@@ -6,6 +6,9 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     function showHistory() {
         $http.get('http://localhost:8080/transaction-log/logs/')
             .then(function(res){
+                for(var i = 0; i< res.data.length; i++) {
+                    res.data[i].arithmeticOperation = convertToJsonData(res.data[i].arithmeticOperation);
+                }
                 $scope.results = res.data;
             });
     }
@@ -52,6 +55,17 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
                 calculatorModel.subOperation = "POWER";
                 break;
         }
+    }
+
+    function convertToJsonData(sub) {
+         switch(sub) {
+                     case "ADD": return "+";
+                     case "SUBTRACT": return "-";
+                     case "MULTIPLY": return "*";
+                     case "DIVIDE": return "/";
+                     case "POWER" : return "^";
+                 }
+         return "UNKNOWN";
     }
 
     $scope.calculator = calculatorModel;
