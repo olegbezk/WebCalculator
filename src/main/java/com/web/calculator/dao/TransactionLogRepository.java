@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface TransactionLogDao extends JpaRepository<TransactionsLog, Integer> {
+public interface TransactionLogRepository extends JpaRepository<TransactionsLog, Integer> {
 }

@@ -3,7 +3,7 @@ package com.web.calculator.web;
 import java.util.List;
 
 import com.web.calculator.model.TransactionsLog;
-import com.web.calculator.dao.TransactionLogDao;
+import com.web.calculator.dao.TransactionLogRepository;
 import com.web.calculator.service.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class TransactionsLogController {
 
     @Autowired
-    private TransactionLogDao transactionLogDao;
+    private TransactionLogRepository transactionLogDao;
 
     @Autowired
     private CalculatorService calculatorService;
@@ -35,5 +35,11 @@ public class TransactionsLogController {
     public TransactionsLog addTransactionLog(@RequestBody TransactionsLog transactionLog) {
         calculatorService.calculate(transactionLog);
         return transactionLogDao.save(transactionLog);
+    }
+
+    @Transactional
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteTransactionalLog(@RequestBody   TransactionsLog transactionsLog) {
+        transactionLogDao.delete(transactionsLog.getTransactionId());
     }
 }

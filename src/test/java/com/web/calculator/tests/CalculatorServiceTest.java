@@ -6,8 +6,6 @@ import com.web.calculator.service.CalculatorService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +22,7 @@ public class CalculatorServiceTest {
     private CalculatorService calculatorService;
 
     @Before
-    public void init() {
+    public void setup() {
         calculatorService = new CalculatorService();
         expectedResults = new HashMap<>();
         transactionsLog = new TransactionsLog();
