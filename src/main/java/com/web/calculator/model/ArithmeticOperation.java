@@ -6,5 +6,20 @@ package com.web.calculator.model;
 
 public enum ArithmeticOperation {
 
-    ADD, SUBTRACT, MULTIPLY, DIVIDE, POWER
+    ADD("+"),
+    SUBTRACT("-"),
+    MULTIPLY("*"),
+    DIVIDE("/"),
+    POWER("^");
+
+    private String value;
+
+    ArithmeticOperation(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
