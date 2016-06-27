@@ -114,6 +114,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
 });
 
 calculatorModel = {
+
     result: 0,
     operation: "",
     subOperation: "",
