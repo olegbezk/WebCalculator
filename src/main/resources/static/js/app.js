@@ -78,6 +78,8 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
         }
         if(calculatorModel.continueOperation) {
             calculatorModel.firstNumber = calculatorModel.result;
+            calculatorModel.currentNumber += clickedNumber;
+            calculatorModel.continueOperation = false;
         } else {
             calculatorModel.currentNumber += clickedNumber;
         }
@@ -85,7 +87,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
         if(calculatorModel.operation == "") {
             calculatorModel.firstNumber = parseFloat(calculatorModel.currentNumber);
         } else {
-            calculatorModel.secondNumber = parseFloat(clickedNumber);
+            calculatorModel.secondNumber = parseFloat(calculatorModel.currentNumber);
             calculatorModel.singleOp = true;
         }
         calculatorModel.currentDisplay += clickedNumber;
