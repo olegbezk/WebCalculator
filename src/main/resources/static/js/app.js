@@ -3,8 +3,6 @@ var calculatorModule = angular.module('calculatorModule', []);
 
 calculatorModule.controller('calculatorController', function($scope, $http) {
 
-    var singleOp = false;
-
     function showHistory() {
         $http.get('http://localhost:8080/transaction-log/logs/')
             .then(function(res){
@@ -32,6 +30,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
         ).success(function (response) {
             $scope.calcResult = response;
             calculatorModel.currentDisplay = response.result;
+            calculatorModel.result = response.result;
         });
     }
 
@@ -58,18 +57,22 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     $scope.calculator = calculatorModel;
 
     $scope.numberButtonClicked = function(clickedNumber) {
+
         if(calculatorModel.currentNumber === "0") {
             calculatorModel.currentNumber = "";
             calculatorModel.currentDisplay = "";
         }
-
-        calculatorModel.currentNumber += clickedNumber;
+        if(calculatorModel.continueOperation) {
+            calculatorModel.firstNumber = calculatorModel.result;
+        } else {
+            calculatorModel.currentNumber += clickedNumber;
+        }
 
         if(calculatorModel.operation == "") {
-            calculatorModel.firstNumber = parseFloat(clickedNumber);
+            calculatorModel.firstNumber = parseFloat(calculatorModel.currentNumber);
         } else {
             calculatorModel.secondNumber = parseFloat(clickedNumber);
-            singleOp = true;
+            calculatorModel.singleOp = true;
         }
         calculatorModel.currentDisplay += clickedNumber;
     };
@@ -79,15 +82,19 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     };
 
     $scope.enterClicked = function() {
-        if(singleOp == true) {
+        if(calculatorModel.singleOp == true) {
             postData();
             showHistory();
-            singleOp = false;
+            calculatorModel.operation = "";
+            calculatorModel.singleOp = false;
+            calculatorModel.continueOperation = true;
         }
     };
 
     $scope.resetClicked = function() {
         calculatorModel.reset();
+        calculatorModel.continueOperation = false;
+        showHistory();
     };
 });
 
@@ -99,6 +106,8 @@ calculatorModel = {
     currentDisplay: "",
     firstNumber: 0,
     secondNumber: 0,
+    singleOp: false,
+    continueOperation: false,
 
     reset: function() {
         this.result = 0;
@@ -110,15 +119,20 @@ calculatorModel = {
     },
 
     setOperation: function(operationToSet) {
-        this.operation = operationToSet;
-        if(calculatorModel.currentNumber === "0") {
+
+        if(this.operation == "") {
+                this.operation = operationToSet;
+            }
+
+        if(this.currentNumber === "0") {
             this.currentDisplay += "0";
         }
 
-        this.currentDisplay += " " + this.operation + " ";
-        //this.calculate();
+        if(this.operation != "") {
+            this.currentDisplay += " " + this.operation + " ";
+        }
 
-        this.currentNumber = "";
+        this.currentNumber = 0;
     }
 
 };
