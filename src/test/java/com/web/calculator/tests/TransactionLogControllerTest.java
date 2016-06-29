@@ -72,7 +72,7 @@ public class TransactionLogControllerTest {
             assertEquals(6.0, log.getResult());
         }
 
-        transactionLogRepository.delete(transactionsLog);
+        transactionLogRepository.delete(transactionsLog.get(0).getTransactionId());
     }
 
     @Test
@@ -97,8 +97,27 @@ public class TransactionLogControllerTest {
         assertEquals(ArithmeticOperation.MULTIPLY, transactionsLogs[0].getArithmeticOperation());
         assertEquals(ArithmeticOperation.DIVIDE, transactionsLogs[1].getArithmeticOperation());
 
-        transactionLogRepository.delete(transactionsLog1);
-        transactionLogRepository.delete(transactionsLog2);
+        transactionLogRepository.delete(transactionsLog1.getTransactionId());
+        transactionLogRepository.delete(transactionsLog2.getTransactionId());
+    }
+
+    @Test
+    public void testDeleteOperationLogApi() throws JsonProcessingException {
+
+        TransactionsLog transactionsLog = new TransactionsLog();
+        transactionsLog.setLeftOperand(4.0);
+        transactionsLog.setRightOperand(6.0);
+        transactionsLog.setArithmeticOperation(ArithmeticOperation.MULTIPLY);
+        transactionLogRepository.save(transactionsLog);
+
+        List<TransactionsLog> transactionsLogList = transactionLogRepository.findAll();
+        int id = transactionsLogList.get(0).getTransactionId();
+
+        restTemplate.delete("http://localhost:8080/transaction-log/delete/" + String.valueOf(id), Collections.EMPTY_MAP);
+
+        List<TransactionsLog> transactionsLogFromDB  = transactionLogRepository.findAll();
+
+        assertEquals(0, transactionsLogFromDB.size());
     }
 
 }
