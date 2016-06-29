@@ -39,7 +39,7 @@ public class TransactionLogControllerTest {
     private RestTemplate restTemplate = new TestRestTemplate();
 
     @Test
-    public void testCreateOperationLogApi() throws JsonProcessingException {
+    public void testCreateOperationTransactionLogApi() throws JsonProcessingException {
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("leftOperand", 4);
@@ -76,7 +76,7 @@ public class TransactionLogControllerTest {
     }
 
     @Test
-    public void testFindAllOperationLogApi() throws JsonProcessingException {
+    public void testFindAllOperationTransactionLogApi() throws JsonProcessingException {
         TransactionsLog transactionsLog1 = new TransactionsLog();
         transactionsLog1.setLeftOperand(4.0);
         transactionsLog1.setRightOperand(6.0);
@@ -102,7 +102,7 @@ public class TransactionLogControllerTest {
     }
 
     @Test
-    public void testDeleteOperationLogApi() throws JsonProcessingException {
+    public void testDeleteOperationTransactionLogApi() throws JsonProcessingException {
 
         TransactionsLog transactionsLog = new TransactionsLog();
         transactionsLog.setLeftOperand(4.0);
@@ -115,7 +115,7 @@ public class TransactionLogControllerTest {
 
         restTemplate.delete("http://localhost:8080/transaction-log/delete/" + String.valueOf(id), Collections.EMPTY_MAP);
 
-        List<TransactionsLog> transactionsLogFromDB  = transactionLogRepository.findAll();
+        List<TransactionsLog> transactionsLogFromDB = transactionLogRepository.findAll();
 
         assertEquals(0, transactionsLogFromDB.size());
     }
