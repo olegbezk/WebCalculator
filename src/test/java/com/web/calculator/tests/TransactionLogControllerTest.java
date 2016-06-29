@@ -112,6 +112,8 @@ public class TransactionLogControllerTest {
         List<TransactionsLog> transactionsLogList = transactionLogRepository.findAll();
         int id = transactionsLogList.get(0).getTransactionId();
 
+        assertNotNull(id);
+
         restTemplate.delete("http://localhost:8080/transaction-log/delete/" + String.valueOf(id), Collections.EMPTY_MAP);
 
         List<TransactionsLog> transactionsLogFromDB = transactionLogRepository.findAll();
