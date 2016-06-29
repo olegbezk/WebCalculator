@@ -64,7 +64,7 @@ public class TransactionLogControllerTest {
         List<TransactionsLog> transactionsLog = transactionLogRepository.findAll();
 
         for (TransactionsLog log : transactionsLog) {
-            assertEquals(1, log.getTransactionId());
+            assertEquals(apiResponse.get("transactionId"), log.getTransactionId());
             assertEquals(4.0, log.getLeftOperand());
             assertEquals(ArithmeticOperation.ADD, log.getArithmeticOperation());
             assertEquals(2.0, log.getRightOperand());
