@@ -39,7 +39,7 @@ public class TransactionLogControllerTest {
     private RestTemplate restTemplate = new TestRestTemplate();
 
     @Test
-    public void testCreateOperationTransactionLogApi() throws JsonProcessingException {
+    public void testAddOperationTransactionLogApi() throws JsonProcessingException {
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("leftOperand", 4);
@@ -76,7 +76,7 @@ public class TransactionLogControllerTest {
     }
 
     @Test
-    public void testFindAllOperationTransactionLogApi() throws JsonProcessingException {
+    public void testGetOperationTransactionLogApi() throws JsonProcessingException {
         TransactionsLog transactionsLog1 = new TransactionsLog();
         transactionsLog1.setLeftOperand(4.0);
         transactionsLog1.setRightOperand(6.0);
