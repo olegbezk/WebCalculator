@@ -27,9 +27,7 @@ public class TransactionsLog {
     @Column(name = "result")
     private double result;
 
-    public int getTransactionId() {
-        return transactionId;
-    }
+    public int getTransactionId() { return transactionId; }
 
     public void setTransactionId(int transactionId) {
         this.transactionId = transactionId;

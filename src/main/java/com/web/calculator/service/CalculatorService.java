@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculatorService {
 
+    /**
+     * Calculate result using values from TransactionsLog.class
+     * @param log TransactionsLog.class
+     * @return result
+     */
     public TransactionsLog calculate(TransactionsLog log) {
         double result;
         switch (log.getArithmeticOperation()) {
