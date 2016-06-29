@@ -52,8 +52,7 @@ public class TransactionLogControllerTest {
         HttpEntity<String> httpEntity =
                 new HttpEntity<>(OBJECT_MAPPER.writeValueAsString(requestBody), requestHeaders);
 
-        Map<String, Object> apiResponse =
-                restTemplate.postForObject("http://localhost:8080/transaction-log/add/",
+        Map<String, Object> apiResponse = restTemplate.postForObject("http://localhost:8080/transaction-log/add/",
                         httpEntity, Map.class, Collections.EMPTY_MAP);
 
         assertNotNull(apiResponse);
