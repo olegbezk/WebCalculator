@@ -65,10 +65,10 @@ public class TransactionLogControllerTest {
 
         for (TransactionsLog log : transactionsLog) {
             assertEquals(apiResponse.get("transactionId"), log.getTransactionId());
-            assertEquals(4.0, log.getLeftOperand());
+            assertEquals(apiResponse.get("leftOperand"), log.getLeftOperand());
             assertEquals(ArithmeticOperation.ADD, log.getArithmeticOperation());
-            assertEquals(2.0, log.getRightOperand());
-            assertEquals(6.0, log.getResult());
+            assertEquals(apiResponse.get("rightOperand"), log.getRightOperand());
+            assertEquals(apiResponse.get("result"), log.getResult());
         }
 
         transactionLogRepository.delete(transactionsLog.get(0).getTransactionId());
