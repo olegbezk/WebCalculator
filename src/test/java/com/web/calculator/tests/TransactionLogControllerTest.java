@@ -58,8 +58,7 @@ public class TransactionLogControllerTest {
 
         assertNotNull(apiResponse);
 
-        String transactionId = ((Map<String, Object>) apiResponse
-                .get("transactionId")).get("id").toString();
+        String transactionId = apiResponse.get("transactionId").toString();
 
         assertNotNull(transactionId);
 
@@ -67,35 +66,17 @@ public class TransactionLogControllerTest {
 
         for (TransactionsLog log : transactionsLog) {
             assertEquals(1, log.getTransactionId());
-            assertEquals(4, log.getLeftOperand());
+            assertEquals(4.0, log.getLeftOperand());
             assertEquals(ArithmeticOperation.ADD, log.getArithmeticOperation());
-            assertEquals(2, log.getRightOperand());
-            assertEquals(6, log.getResult());
+            assertEquals(2.0, log.getRightOperand());
+            assertEquals(6.0, log.getResult());
         }
 
         transactionLogRepository.delete(transactionsLog);
     }
 
     @Test
-    public void testDeleteOperationLogApi() {
-        TransactionsLog transactionsLog = new TransactionsLog();
-        transactionsLog.setLeftOperand(4.0);
-        transactionsLog.setRightOperand(6.0);
-        transactionsLog.setArithmeticOperation(ArithmeticOperation.MULTIPLY);
-
-        transactionLogRepository.save(transactionsLog);
-
-        int transactionId = transactionsLog.getTransactionId();
-
-        restTemplate.delete("http://localhost:8080/transaction-log/delete/" + transactionId, Collections.EMPTY_MAP);
-
-        List<TransactionsLog> transactionsLogFromDB  = transactionLogRepository.findAll();
-
-        assertNull(transactionsLogFromDB);
-    }
-
-    @Test
-    public void testFindAllOperationLogApi() {
+    public void testFindAllOperationLogApi() throws JsonProcessingException {
         TransactionsLog transactionsLog1 = new TransactionsLog();
         transactionsLog1.setLeftOperand(4.0);
         transactionsLog1.setRightOperand(6.0);
@@ -103,24 +84,21 @@ public class TransactionLogControllerTest {
         transactionLogRepository.save(transactionsLog1);
 
         TransactionsLog transactionsLog2 = new TransactionsLog();
-        transactionsLog1.setLeftOperand(5.0);
-        transactionsLog1.setRightOperand(3.0);
-        transactionsLog1.setArithmeticOperation(ArithmeticOperation.DIVIDE);
+        transactionsLog2.setLeftOperand(5.0);
+        transactionsLog2.setRightOperand(3.0);
+        transactionsLog2.setArithmeticOperation(ArithmeticOperation.DIVIDE);
         transactionLogRepository.save(transactionsLog2);
 
-        Map<String, Object> apiResponse = restTemplate
-                .getForObject("http://localhost:8080/http://localhost:8080/transaction-log/logs/", Map.class);
+        TransactionsLog[] transactionsLogs = restTemplate
+                .getForObject("http://localhost:8080/transaction-log/logs/", TransactionsLog[].class);
 
-        //TODO: choose test strategy
-        //Assert the response from the API
-        int totalLogs = Integer.parseInt(apiResponse.get("totalBooks").toString());
-        assertTrue(totalLogs == 2);
+        assertTrue(transactionsLogs.length == 2);
 
-        List<Map<String, Object>> booksList = (List<Map<String, Object>>)apiResponse.get("books");
-        assertTrue(booksList.size() == 2);
+        assertEquals(ArithmeticOperation.MULTIPLY, transactionsLogs[0].getArithmeticOperation());
+        assertEquals(ArithmeticOperation.DIVIDE, transactionsLogs[1].getArithmeticOperation());
 
-        transactionLogRepository.delete(transactionsLog1.getTransactionId());
-        transactionLogRepository.delete(transactionsLog2.getTransactionId());
+        transactionLogRepository.delete(transactionsLog1);
+        transactionLogRepository.delete(transactionsLog2);
     }
 
 }

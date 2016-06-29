@@ -38,7 +38,7 @@ public class TransactionsLogController {
     }
 
     @Transactional
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public void deleteTransactionsLog(@RequestBody   TransactionsLog transactionsLog) {
         transactionLogDao.delete(transactionsLog.getTransactionId());
     }
