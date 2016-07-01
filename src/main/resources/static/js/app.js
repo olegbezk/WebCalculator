@@ -6,7 +6,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     function showHistory() {
         $http.get('http://localhost:8080/transaction-log/logs/')
             .then(function(res){
-                for(var i = 0; i< res.data.length; i++) {
+                for(var i = 0; i < res.data.length; i++) {
                     res.data[i].arithmeticOperation = convertToJsonData(res.data[i].arithmeticOperation);
                 }
                 $scope.results = res.data;
@@ -22,6 +22,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
             rightOperand: calculatorModel.secondNumber,
             arithmeticOperation: calculatorModel.subOperation
             };
+
         $http.post(
             'http://localhost:8080/transaction-log/add/',
             JSON.stringify(calcData),
@@ -76,6 +77,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
             calculatorModel.currentNumber = "";
             calculatorModel.currentDisplay = "";
         }
+
         if(calculatorModel.continueOperation) {
             calculatorModel.firstNumber = calculatorModel.result;
             calculatorModel.currentNumber += clickedNumber;
@@ -90,6 +92,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
             calculatorModel.secondNumber = parseFloat(calculatorModel.currentNumber);
             calculatorModel.singleOp = true;
         }
+
         calculatorModel.currentDisplay += clickedNumber;
     };
 
@@ -100,10 +103,10 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     $scope.enterClicked = function() {
         if(calculatorModel.singleOp == true) {
             postData();
-            showHistory();
             calculatorModel.operation = "";
             calculatorModel.singleOp = false;
             calculatorModel.continueOperation = true;
+            showHistory();
         }
     };
 
