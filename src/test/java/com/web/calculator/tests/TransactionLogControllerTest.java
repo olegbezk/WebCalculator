@@ -75,7 +75,7 @@ public class TransactionLogControllerTest {
     }
 
     @Test
-    public void testGetOperationTransactionLogApi() throws JsonProcessingException {
+    public void testGetOperationTransactionLogApi() {
         TransactionsLog transactionsLog1 = new TransactionsLog();
         transactionsLog1.setLeftOperand(4.0);
         transactionsLog1.setRightOperand(6.0);
@@ -101,7 +101,7 @@ public class TransactionLogControllerTest {
     }
 
     @Test
-    public void testDeleteOperationTransactionLogApi() throws JsonProcessingException {
+    public void testDeleteOperationTransactionLogApi() {
 
         TransactionsLog transactionsLog = new TransactionsLog();
         transactionsLog.setLeftOperand(4.0);
