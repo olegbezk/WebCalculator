@@ -1,4 +1,4 @@
 # WebCalculator
-run Application.class
+run Application class
 
 go to http://localhost:8080
