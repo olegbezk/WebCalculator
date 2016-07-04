@@ -6,7 +6,6 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     function calculate() {
         if(calculatorModel.singleOp == true) {
                     postData();
-//                    calculatorModel.operation = "";
                     calculatorModel.singleOp = false;
                     calculatorModel.continueOperation = true;
                     showHistory();
