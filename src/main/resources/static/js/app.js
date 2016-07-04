@@ -3,6 +3,16 @@ var calculatorModule = angular.module('calculatorModule', []);
 
 calculatorModule.controller('calculatorController', function($scope, $http) {
 
+    function calculate() {
+        if(calculatorModel.singleOp == true) {
+                    postData();
+                    calculatorModel.operation = "";
+                    calculatorModel.singleOp = false;
+                    calculatorModel.continueOperation = true;
+                    showHistory();
+                }
+    }
+
     function showHistory() {
         $http.get('http://localhost:8080/transaction-log/logs/')
             .then(function(res){
@@ -97,17 +107,15 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     };
 
     $scope.operationButtonClicked = function(clickedOperation) {
+
+        if(calculatorModel.operation != "") {
+            calculate();
+        }
         calculatorModel.setOperation(clickedOperation);
     };
 
     $scope.enterClicked = function() {
-        if(calculatorModel.singleOp == true) {
-            postData();
-            calculatorModel.operation = "";
-            calculatorModel.singleOp = false;
-            calculatorModel.continueOperation = true;
-            showHistory();
-        }
+        calculate();
     };
 
     $scope.resetClicked = function() {
