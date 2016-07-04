@@ -7,6 +7,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
         if(calculatorModel.singleOp == true) {
                     postData();
                     calculatorModel.singleOp = false;
+                    calculatorModel.newSign = false;
                     calculatorModel.continueOperation = true;
                     showHistory();
                 }
@@ -157,7 +158,7 @@ calculatorModel = {
             this.currentDisplayHolder = this.currentDisplay;
             this.newSign = true;
         } else if(this.continueOperation == true) {
-            this.currentDisplayHolder = this.currentDisplay;
+            this.currentDisplayHolder = this.result;
         }
 
         if(this.currentNumber === "0") {
