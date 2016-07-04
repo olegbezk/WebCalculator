@@ -116,9 +116,9 @@ public class TransactionLogControllerTest {
 
         restTemplate.delete("http://localhost:8080/transaction-log/delete/" + id, Collections.EMPTY_MAP);
 
-        List<TransactionsLog> transactionsLogFromDB = transactionLogRepository.findAll();
+        List<TransactionsLog> transactionsLogFromDBAfterDelOp = transactionLogRepository.findAll();
 
-        assertEquals(0, transactionsLogFromDB.size());
+        assertEquals(0, transactionsLogFromDBAfterDelOp.size());
     }
 
 }
