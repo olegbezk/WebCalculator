@@ -45,7 +45,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
             $scope.calcResult = response;
             calculatorModel.currentDisplay = response.result;
             calculatorModel.result = response.result;
-        }).error(function (data, status, header, config) {
+        }).error(function (response) {
                 alert("Division by Zero !")
                 calculatorModel.reset();
             });
