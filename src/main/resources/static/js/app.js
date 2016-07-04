@@ -6,7 +6,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
     function calculate() {
         if(calculatorModel.singleOp == true) {
                     postData();
-                    calculatorModel.operation = "";
+//                    calculatorModel.operation = "";
                     calculatorModel.singleOp = false;
                     calculatorModel.continueOperation = true;
                     showHistory();
@@ -108,7 +108,7 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
 
     $scope.operationButtonClicked = function(clickedOperation) {
 
-        if(calculatorModel.operation != "") {
+        if(calculatorModel.singleOp == true) {
             calculate();
         }
         calculatorModel.setOperation(clickedOperation);
@@ -131,10 +131,12 @@ calculatorModel = {
     subOperation: "",
     currentNumber: "0",
     currentDisplay: "",
+    currentDisplayHolder: "",
     firstNumber: 0,
     secondNumber: 0,
     singleOp: false,
     continueOperation: false,
+    newSign: false,
 
     reset: function() {
         this.result = 0;
@@ -144,20 +146,27 @@ calculatorModel = {
         this.firstNumber = 0;
         this.secondNumber = 0;
         this.continueOperation = false;
+        this.newSign = false;
+        this.currentDisplayHolder = "";
     },
 
     setOperation: function(operationToSet) {
 
-        if(this.operation == "") {
-                this.operation = operationToSet;
-            }
+        this.operation = operationToSet;
+
+        if(this.newSign == false) {
+            this.currentDisplayHolder = this.currentDisplay;
+            this.newSign = true;
+        } else if(this.continueOperation == true) {
+            this.currentDisplayHolder = this.currentDisplay;
+        }
 
         if(this.currentNumber === "0") {
             this.currentDisplay += "0";
         }
 
-        if(this.operation != "") {
-            this.currentDisplay += " " + this.operation + " ";
+        if(this.newSign == true) {
+            this.currentDisplay = this.currentDisplayHolder + " " + this.operation + " ";
         }
 
         this.currentNumber = 0;
