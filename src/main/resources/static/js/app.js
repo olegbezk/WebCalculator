@@ -88,7 +88,6 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
 
         if(calculatorModel.currentNumber === "0") {
             calculatorModel.currentNumber = "";
-            calculatorModel.currentDisplay = "";
         }
 
         if(calculatorModel.continueOperation) {
@@ -172,7 +171,7 @@ calculatorModel = {
             this.currentDisplay = this.currentDisplayHolder + " " + this.operation + " ";
         }
 
-        this.currentNumber = 0;
+        this.currentNumber = "0";
     }
 
 };
