@@ -5,12 +5,12 @@ calculatorModule.controller('calculatorController', function($scope, $http) {
 
     function calculate() {
         if(calculatorModel.singleOp == true) {
-                    postData();
-                    calculatorModel.singleOp = false;
-                    calculatorModel.newSign = false;
-                    calculatorModel.continueOperation = true;
-                    showHistory();
-                }
+            postData();
+            calculatorModel.singleOp = false;
+            calculatorModel.newSign = false;
+            calculatorModel.continueOperation = true;
+            showHistory();
+            }
     }
 
     function showHistory() {
